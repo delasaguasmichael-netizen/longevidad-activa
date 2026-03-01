@@ -129,6 +129,7 @@
             </div>
             <nav class="flex flex-col gap-8">
                 <button onclick="navigateTo('home')" class="nav-mobile-btn text-3xl font-serif text-left transition-colors" data-section="home">Inicio</button>
+                <button onclick="navigateTo('recursos')" class="nav-mobile-btn text-3xl font-serif text-left transition-colors" data-section="recursos">Recursos</button>
                 <button onclick="navigateTo('nutricion')" class="nav-mobile-btn text-3xl font-serif text-left transition-colors" data-section="nutricion">Nutrición</button>
                 <button onclick="navigateTo('sueno')" class="nav-mobile-btn text-3xl font-serif text-left transition-colors" data-section="sueno">Sueño</button>
                 <button onclick="navigateTo('tecnologia')" class="nav-mobile-btn text-3xl font-serif text-left transition-colors" data-section="tecnologia">Tecnología</button>
@@ -160,6 +161,7 @@
                 
                 <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-600">
                     <button onclick="navigateTo('home')" class="nav-btn transition-colors" data-section="home">Inicio</button>
+                    <button onclick="navigateTo('recursos')" class="nav-btn transition-colors" data-section="recursos">Recursos</button>
                     <button onclick="navigateTo('nutricion')" class="nav-btn transition-colors" data-section="nutricion">Nutrición</button>
                     <button onclick="navigateTo('sueno')" class="nav-btn transition-colors" data-section="sueno">Sueño</button>
                     <button onclick="navigateTo('tecnologia')" class="nav-btn transition-colors" data-section="tecnologia">Tecnología</button>
@@ -771,6 +773,168 @@
             </div>
         </div>
 
+        <!-- Recursos y Herramientas Section -->
+        <div id="section-recursos" class="section-content">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-4 py-1.5 mb-4 text-[10px] font-bold tracking-[0.2em] text-emerald-700 uppercase bg-emerald-50 rounded-full">Herramientas Prácticas</span>
+                    <h1 class="text-4xl md:text-6xl font-serif mb-6">Recursos de Biohacking</h1>
+                    <p class="text-zinc-600 max-w-2xl mx-auto">Optimiza tu biología con nuestra selección de herramientas, protocolos y conocimiento científico fundamental.</p>
+                </div>
+
+                <!-- Glosario Interactivo -->
+                <section class="mb-24">
+                    <div class="flex items-center gap-3 mb-10">
+                        <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center text-emerald-500">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-3xl font-serif">Glosario de Longevidad</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="p-8 bg-zinc-50 rounded-3xl border border-zinc-100 hover:border-emerald-200 transition-colors group">
+                            <h3 class="text-xl font-bold mb-3 text-zinc-900 group-hover:text-emerald-700 transition-colors">🧬 Autofagia</h3>
+                            <p class="text-zinc-600 text-sm leading-relaxed">Proceso de regeneración celular donde el cuerpo descompone y recicla componentes celulares dañados o disfuncionales para mantener la salud.</p>
+                        </div>
+                        <div class="p-8 bg-zinc-50 rounded-3xl border border-zinc-100 hover:border-emerald-200 transition-colors group">
+                            <h3 class="text-xl font-bold mb-3 text-zinc-900 group-hover:text-emerald-700 transition-colors">⚡ Hormesis</h3>
+                            <p class="text-zinc-600 text-sm leading-relaxed">Respuesta biológica adaptativa donde la exposición controlada a un estresor (frío, calor, ejercicio) fortalece la resiliencia del organismo.</p>
+                        </div>
+                        <div class="p-8 bg-zinc-50 rounded-3xl border border-zinc-100 hover:border-emerald-200 transition-colors group">
+                            <h3 class="text-xl font-bold mb-3 text-zinc-900 group-hover:text-emerald-700 transition-colors">🔋 NAD+</h3>
+                            <p class="text-zinc-600 text-sm leading-relaxed">Coenzima crítica para el metabolismo energético y la reparación del ADN. Sus niveles disminuyen con la edad, afectando la vitalidad celular.</p>
+                        </div>
+                        <div class="p-8 bg-zinc-50 rounded-3xl border border-zinc-100 hover:border-emerald-200 transition-colors group">
+                            <h3 class="text-xl font-bold mb-3 text-zinc-900 group-hover:text-emerald-700 transition-colors">🌙 Ritmo Circadiano</h3>
+                            <p class="text-zinc-600 text-sm leading-relaxed">Reloj biológico interno de 24 horas que regula procesos fisiológicos esenciales, incluyendo el ciclo de sueño-vigilia y la producción hormonal.</p>
+                        </div>
+                        <div class="p-8 bg-zinc-50 rounded-3xl border border-zinc-100 hover:border-emerald-200 transition-colors group">
+                            <h3 class="text-xl font-bold mb-3 text-zinc-900 group-hover:text-emerald-700 transition-colors">🧠 Nootrópicos</h3>
+                            <p class="text-zinc-600 text-sm leading-relaxed">Sustancias (naturales o sintéticas) diseñadas para mejorar la función cognitiva, particularmente la memoria, la creatividad y la motivación.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Protocolo Diario -->
+                <section class="mb-24">
+                    <div class="flex items-center gap-3 mb-10">
+                        <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center text-emerald-500">
+                            <i data-lucide="calendar" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-3xl font-serif">Protocolo Diario Sugerido</h2>
+                    </div>
+                    <div class="bg-zinc-900 rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div class="grid grid-cols-1 md:grid-cols-3">
+                            <div class="p-10 border-b md:border-b-0 md:border-r border-zinc-800">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500">
+                                        <i data-lucide="sun" class="w-6 h-6"></i>
+                                    </div>
+                                    <span class="text-white font-bold uppercase tracking-widest text-xs">Mañana</span>
+                                </div>
+                                <h4 class="text-xl text-white font-serif mb-4">Activación Biológica</h4>
+                                <ul class="space-y-4 text-zinc-400 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">☀️</span>
+                                        <span>Exposición a luz solar natural (10-15 min) para sincronizar el cortisol.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">💧</span>
+                                        <span>Hidratación profunda con agua filtrada y una pizca de sal marina.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">🚿</span>
+                                        <span>Ducha fría (2 min) para activar la grasa parda y el sistema inmune.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="p-10 border-b md:border-b-0 md:border-r border-zinc-800">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500">
+                                        <i data-lucide="zap" class="w-6 h-6"></i>
+                                    </div>
+                                    <span class="text-white font-bold uppercase tracking-widest text-xs">Tarde</span>
+                                </div>
+                                <h4 class="text-xl text-white font-serif mb-4">Rendimiento Cognitivo</h4>
+                                <ul class="space-y-4 text-zinc-400 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">🧠</span>
+                                        <span>Bloques de "Trabajo Profundo" sin distracciones digitales.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">🥗</span>
+                                        <span>Primera comida del día (si haces 16:8) rica en grasas saludables.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">🚶</span>
+                                        <span>Caminata post-prandial para estabilizar los niveles de glucosa.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="p-10">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500">
+                                        <i data-lucide="moon" class="w-6 h-6"></i>
+                                    </div>
+                                    <span class="text-white font-bold uppercase tracking-widest text-xs">Noche</span>
+                                </div>
+                                <h4 class="text-xl text-white font-serif mb-4">Reparación Celular</h4>
+                                <ul class="space-y-4 text-zinc-400 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">👓</span>
+                                        <span>Uso de gafas de bloqueo de luz azul tras la puesta de sol.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">📵</span>
+                                        <span>Desconexión digital total 60 minutos antes de dormir.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-emerald-500 mt-1">🌡️</span>
+                                        <span>Optimización de la temperatura del dormitorio (18-19°C).</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQ Section -->
+                <section>
+                    <div class="flex items-center gap-3 mb-10">
+                        <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center text-emerald-500">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-3xl font-serif">Preguntas Frecuentes (FAQ)</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-8">
+                            <div class="p-6 bg-white border-b border-zinc-100">
+                                <h4 class="text-lg font-bold mb-3 text-zinc-900">¿Es seguro el ayuno intermitente?</h4>
+                                <p class="text-zinc-600 text-sm leading-relaxed">Sí, para la mayoría de los adultos sanos es una herramienta segura y poderosa para la salud metabólica. Sin embargo, personas con condiciones médicas previas, embarazadas o con historial de trastornos alimenticios deben consultar a un profesional antes de comenzar.</p>
+                            </div>
+                            <div class="p-6 bg-white border-b border-zinc-100">
+                                <h4 class="text-lg font-bold mb-3 text-zinc-900">¿Qué suplementos son básicos para empezar?</h4>
+                                <p class="text-zinc-600 text-sm leading-relaxed">Recomendamos empezar con los "pilares": Magnesio (para el sueño y +300 reacciones), Omega-3 de alta calidad (inflamación) y Vitamina D3/K2 (salud ósea e inmune).</p>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <div class="p-6 bg-white border-b border-zinc-100">
+                                <h4 class="text-lg font-bold mb-3 text-zinc-900">¿Cuánto tiempo debo exponerme al frío?</h4>
+                                <p class="text-zinc-600 text-sm leading-relaxed">No necesitas horas. Entre 2 y 5 minutos de exposición al frío (ducha o inmersión) son suficientes para activar la respuesta hormética y mejorar la claridad mental.</p>
+                            </div>
+                            <div class="p-6 bg-white border-b border-zinc-100">
+                                <h4 class="text-lg font-bold mb-3 text-zinc-900">¿Cómo influye la luz azul en el sueño?</h4>
+                                <p class="text-zinc-600 text-sm leading-relaxed">La luz azul de las pantallas suprime la producción de melatonina, la hormona del sueño. Esto engaña a tu cerebro haciéndole creer que es de día, alterando profundamente tu descanso reparador.</p>
+                            </div>
+                            <div class="p-6 bg-white border-b border-zinc-100">
+                                <h4 class="text-lg font-bold mb-3 text-zinc-900">¿Puedo hacer biohacking sin gastar dinero?</h4>
+                                <p class="text-zinc-600 text-sm leading-relaxed">Absolutamente. Los biohacks más potentes son gratuitos: exposición solar matutina, higiene del sueño, ayuno intermitente, respiración consciente y caminatas en la naturaleza.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
         <!-- Legal Sections -->
         <div id="section-cookies" class="section-content">
             <div class="max-w-3xl mx-auto px-4 py-20">
@@ -845,6 +1009,8 @@
                 <div>
                     <h4 class="text-white font-semibold mb-6 uppercase tracking-widest text-xs">Explorar</h4>
                     <ul class="space-y-4 text-sm">
+                        <li><button onclick="navigateTo('home')" class="hover:text-emerald-500 transition-colors">Inicio</button></li>
+                        <li><button onclick="navigateTo('recursos')" class="hover:text-emerald-500 transition-colors">Recursos</button></li>
                         <li><button onclick="navigateTo('protocolos')" class="hover:text-emerald-500 transition-colors">Protocolos</button></li>
                         <li><button onclick="navigateTo('suplementos')" class="hover:text-emerald-500 transition-colors">Suplementación</button></li>
                     </ul>
