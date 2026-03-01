@@ -67,6 +67,9 @@
         #mobile-menu.active {
             display: flex;
         }
+        #privacy-modal.active {
+            display: flex;
+        }
         .prose h1, .prose h2, .prose h3 {
             font-family: 'Playfair Display', serif;
         }
@@ -491,7 +494,7 @@
                                     Suscribirme Gratis
                                 </button>
                                 <p class="text-[10px] text-zinc-400 mt-4 text-center leading-relaxed">
-                                    Respetamos tu privacidad. Puedes darte de baja en cualquier momento. Consulta nuestra <button type="button" onclick="navigateTo('privacidad')" class="underline hover:text-emerald-600">Política de Privacidad</button>.
+                                    Respetamos tu privacidad. Puedes darte de baja en cualquier momento. Consulta nuestra <button type="button" onclick="togglePrivacyModal(true)" class="underline hover:text-emerald-600">Política de Privacidad</button>.
                                 </p>
                             </form>
                         </div>
@@ -769,22 +772,6 @@
         </div>
 
         <!-- Legal Sections -->
-        <div id="section-privacidad" class="section-content">
-            <div class="max-w-3xl mx-auto px-4 py-20">
-                <button onclick="navigateTo('home')" class="mb-12 flex items-center text-emerald-600 font-semibold hover:gap-2 transition-all">
-                    <i data-lucide="arrow-left" class="mr-2 w-4 h-4"></i> Volver al Inicio
-                </button>
-                <div class="prose prose-zinc max-w-none">
-                    <h1 class="text-3xl font-serif mb-8">Política de Privacidad</h1>
-                    <p>En Longevidad Activa, valoramos y respetamos su privacidad. Esta política detalla cómo recopilamos, usamos y protegemos su información personal al utilizar nuestra plataforma de biohacking y salud.</p>
-                    <h3>Recopilación de Datos</h3>
-                    <p>Recopilamos información que usted nos proporciona directamente, como su nombre y correo electrónico al suscribirse a nuestro boletín de protocolos. También recopilamos datos técnicos de navegación para mejorar la experiencia del usuario.</p>
-                    <h3>Uso de la Información</h3>
-                    <p>Su información se utiliza exclusivamente para enviarle contenido educativo, actualizaciones de protocolos y, si lo permite, comunicaciones promocionales relacionadas con la longevidad. Nunca venderemos sus datos a terceros.</p>
-                </div>
-            </div>
-        </div>
-
         <div id="section-cookies" class="section-content">
             <div class="max-w-3xl mx-auto px-4 py-20">
                 <button onclick="navigateTo('home')" class="mb-12 flex items-center text-emerald-600 font-semibold hover:gap-2 transition-all">
@@ -866,7 +853,7 @@
                 <div>
                     <h4 class="text-white font-semibold mb-6 uppercase tracking-widest text-xs">Legal</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><button onclick="navigateTo('privacidad')" class="hover:text-emerald-500 transition-colors">Privacidad</button></li>
+                        <li><button onclick="togglePrivacyModal(true)" class="hover:text-emerald-500 transition-colors">Privacidad</button></li>
                         <li><button onclick="navigateTo('cookies')" class="hover:text-emerald-500 transition-colors">Cookies</button></li>
                         <li><button onclick="navigateTo('terminos')" class="hover:text-emerald-500 transition-colors">Términos</button></li>
                         <li><button onclick="navigateTo('descargo')" class="hover:text-emerald-500 transition-colors">Descargo Médico</button></li>
@@ -893,12 +880,69 @@
         </div>
     </footer>
 
+    <!-- Privacy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-[110] bg-zinc-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="p-8 md:p-12">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-serif">Política de Privacidad</h2>
+                    <button onclick="togglePrivacyModal(false)" class="p-2 hover:bg-zinc-100 rounded-full transition-colors">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <div class="prose prose-zinc max-w-none">
+                    <p class="text-zinc-600 leading-relaxed mb-6">
+                        En <strong>Longevidad Activa</strong> (biohackinglongevo.com), valoramos profundamente la confianza que deposita en nosotros al compartir su interés por la salud y el biohacking. Esta Política de Privacidad describe cómo manejamos su información.
+                    </p>
+                    
+                    <h3 class="text-xl font-serif mb-4">Publicidad y Google AdSense</h3>
+                    <p class="text-zinc-600 leading-relaxed mb-6">
+                        Utilizamos <strong>Google AdSense</strong> para mostrar anuncios publicitarios que nos ayudan a mantener gratuita nuestra plataforma de investigación. Google utiliza cookies para mostrar anuncios basados en sus visitas previas a nuestro sitio web o a otros sitios en Internet.
+                    </p>
+
+                    <h3 class="text-xl font-serif mb-4">Uso de Cookies</h3>
+                    <p class="text-zinc-600 leading-relaxed mb-6">
+                        Nuestro sitio utiliza <strong>Cookies</strong> para mejorar su experiencia de usuario, recordar sus preferencias y analizar el tráfico del sitio. Estas herramientas nos permiten ofrecerle contenido más relevante sobre protocolos de longevidad y suplementación.
+                    </p>
+
+                    <h3 class="text-xl font-serif mb-4">Protección y Seguridad de Datos</h3>
+                    <p class="text-zinc-600 leading-relaxed mb-6">
+                        Sus datos están protegidos bajo estrictos estándares de seguridad. <strong>Nunca venderemos, alquilaremos ni compartiremos su información personal con terceros</strong> para fines comerciales sin su consentimiento explícito. La información recopilada se utiliza exclusivamente para mejorar nuestros servicios y enviarle la información científica que ha solicitado.
+                    </p>
+
+                    <p class="text-sm text-zinc-400 italic">
+                        Última actualización: Febrero 2026.
+                    </p>
+                </div>
+                <div class="mt-10 pt-6 border-t border-zinc-100">
+                    <button onclick="togglePrivacyModal(false)" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold hover:bg-emerald-700 transition-colors">
+                        Entendido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
 
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Privacy Modal Logic
+        function togglePrivacyModal(isOpen) {
+            const modal = document.getElementById('privacy-modal');
+            if (isOpen) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
 
         // Searchable Content Database
         const searchableContent = [
