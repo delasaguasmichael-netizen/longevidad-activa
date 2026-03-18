@@ -669,10 +669,13 @@
                                 Únete a más de 50,000 biohackers. Recibe ciencia aplicada directamente en tu bandeja de entrada.
                             </p>
                             
-                            <div id="newsletter-success" class="hidden bg-emerald-50 p-6 rounded-2xl border border-emerald-100 text-center">
-                                <p class="text-emerald-800 font-semibold text-sm">¡Bienvenido a la comunidad!</p>
-                                <p class="text-emerald-600 text-xs mt-2">Revisa tu bandeja de entrada para tu primer protocolo.</p>
-                                <button onclick="resetNewsletter()" class="mt-4 text-[10px] font-bold uppercase tracking-widest text-emerald-700 hover:underline">Volver</button>
+                            <div id="newsletter-success" class="hidden bg-emerald-50 p-8 rounded-3xl border border-emerald-100 text-center">
+                                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600">
+                                    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                                </div>
+                                <p class="text-emerald-900 font-serif text-lg mb-2">🧬 ¡Bienvenido, Biohacker!</p>
+                                <p class="text-emerald-700 text-sm leading-relaxed">Tu primer protocolo de longevidad ha sido enviado a tu correo. Revisa tu bandeja de entrada.</p>
+                                <button onclick="resetNewsletter()" class="mt-6 text-[10px] font-bold uppercase tracking-widest text-emerald-600 hover:text-emerald-800 transition-colors">Suscribir otro correo</button>
                             </div>
 
                             <form id="newsletter-form" class="space-y-3" onsubmit="handleNewsletter(event)" action="https://formspree.io/f/mwvrwdgl" method="POST">
@@ -1746,9 +1749,17 @@
                 });
 
                 if (response.ok) {
-                    form.classList.add('hidden');
-                    successMsg.classList.remove('hidden');
-                    successMsg.classList.add('animate-fade-in');
+                    // Animación de salida para el formulario
+                    form.style.opacity = '0';
+                    form.style.transform = 'translateY(-10px)';
+                    form.style.transition = 'all 0.3s ease-out';
+                    
+                    setTimeout(() => {
+                        form.classList.add('hidden');
+                        successMsg.classList.remove('hidden');
+                        successMsg.classList.add('animate-fade-in');
+                        lucide.createIcons();
+                    }, 300);
                 } else {
                     const data = await response.json();
                     if (data.errors) {
@@ -1767,7 +1778,10 @@
         }
 
         function resetNewsletter() {
-            document.getElementById('newsletter-form').classList.remove('hidden');
+            const form = document.getElementById('newsletter-form');
+            form.style.opacity = '1';
+            form.style.transform = 'translateY(0)';
+            form.classList.remove('hidden');
             document.getElementById('newsletter-success').classList.add('hidden');
             document.getElementById('newsletter-submit').disabled = false;
             document.getElementById('newsletter-submit').innerHTML = 'Suscribirme Gratis';
