@@ -679,25 +679,29 @@
                                 <button onclick="resetNewsletter()" class="mt-6 text-[10px] font-bold uppercase tracking-widest text-emerald-600 hover:text-emerald-800 transition-colors">Suscribir otro correo</button>
                             </div>
 
-                            <form id="newsletter-form" class="space-y-3" onsubmit="handleNewsletter(event)" action="https://formspree.io/f/mwvrwdgl" method="POST">
-                                <div>
-                                    <input 
-                                        id="newsletter-email"
-                                        name="email" 
-                                        type="email" 
-                                        placeholder="Tu mejor email" 
-                                        required
-                                        class="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
-                                    >
-                                    <p id="newsletter-error" class="hidden text-[10px] text-red-500 mt-1 ml-1 font-semibold">Por favor, ingresa un email válido.</p>
-                                </div>
-                                <button type="submit" id="newsletter-submit" class="btn-hover-effect w-full py-3 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-700 active:scale-95 transition-all flex items-center justify-center">
-                                    Suscribirme Gratis
-                                </button>
-                                <p class="text-[10px] text-zinc-400 mt-4 text-center leading-relaxed">
-                                    Respetamos tu privacidad. Puedes darte de baja en cualquier momento. Consulta nuestra <button type="button" onclick="togglePrivacyModal(true)" class="underline hover:text-emerald-600">Política de Privacidad</button>.
-                                </p>
-                            </form>
+<form id="newsletter-form" class="space-y-3" onsubmit="handleNewsletter(event)" action="https://formspree.io/f/mwvrwdgl" method="POST">
+    <div>
+        <input 
+            id="newsletter-email" 
+            name="email" 
+            type="email" 
+            placeholder="Tu mejor email" 
+            required 
+            class="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
+        >
+        <p id="newsletter-error" class="hidden text-[10px] text-red-500 mt-1 ml-1 font-semibold">Por favor, ingresa un email válido.</p>
+    </div>
+    
+    <button type="submit" id="newsletter-submit" class="btn-hover-effect w-full py-3 bg-emerald-600 text-white rounded-xl font-bold transition-all shadow-lg shadow-emerald-200/50">
+        Suscribirme Gratis
+    </button>
+    
+    <p class="text-[10px] text-zinc-400 mt-4 text-center leading-relaxed">
+        Respetamos tu privacidad. Puedes darte de baja en cualquier momento. Consulta nuestra <button type="button" onclick="togglePrivacyModal(true)" class="underline hover:text-emerald-600">política</button>
+    </p>
+</form>
+
+<div id="welcome-message" class="hidden"></div>
                         </div>
                     </aside>
                 </div>
@@ -1807,5 +1811,40 @@
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
+    <script>
+async function handleNewsletter(event) {
+    event.preventDefault();
+    const form = event.target;
+    const data = new FormData(form);
+    const button = document.getElementById('newsletter-submit');
+    const feedback = document.getElementById('welcome-message');
+
+    button.innerText = "Enviando...";
+    button.disabled = true;
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            form.classList.add('hidden'); 
+            feedback.classList.remove('hidden');
+            feedback.innerHTML = `
+                <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-center animate-fade-in">
+                    <p class="text-emerald-800 font-bold">🧬 ¡Bienvenido a la élite, Biohacker!</p>
+                    <p class="text-emerald-600 text-sm">Tu primer protocolo de longevidad está en camino a tu correo.</p>
+                </div>
+            `;
+        }
+    } catch (error) {
+        alert("Error al enviar. Inténtalo de nuevo.");
+        button.innerText = "Suscribirme Gratis";
+        button.disabled = false;
+    }
+}
+</script>
 </body>
 </html>
