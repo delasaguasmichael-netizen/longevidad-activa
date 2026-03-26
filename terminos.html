@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones | Biohacking Longevo</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9784250391412162" crossorigin="anonymous"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+        }
+
+        .font-serif {
+            font-family: var(--font-serif);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #10b981;
+            transition: width 0.3s ease;
+        }
+
+        .nav-btn:hover::after {
+            width: 100%;
+        }
+
+        .btn-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-hover-effect:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Search Overlay Styles */
+        #search-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        #search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu Styles */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-white text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 flex flex-col min-h-screen">
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="fixed inset-0 z-[100] bg-white/95 backdrop-blur-xl flex flex-col p-6 md:p-12">
+        <div class="max-w-4xl mx-auto w-full">
+            <div class="flex justify-between items-center mb-12">
+                <span class="text-xs font-bold tracking-[0.3em] text-emerald-700 uppercase">Buscador Inteligente</span>
+                <button onclick="toggleSearch(false)" class="p-2 hover:bg-zinc-100 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <div class="relative">
+                <i data-lucide="search" class="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 text-emerald-600"></i>
+                <input 
+                    type="text" 
+                    id="search-input"
+                    placeholder="¿Qué quieres optimizar hoy?" 
+                    class="w-full bg-transparent border-b-2 border-zinc-100 py-6 pl-12 text-3xl md:text-5xl font-serif focus:outline-none focus:border-emerald-600 transition-colors"
+                    onkeyup="if(event.key === 'Enter') handleSearch(this.value)"
+                >
+            </div>
+            
+            <div class="mt-12">
+                <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-6">Sugerencias de Biohacking</p>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="handleSearch('NAD+')" class="px-6 py-2 rounded-full border border-zinc-200 hover:border-emerald-600 hover:text-emerald-700 transition-all text-sm">NAD+</button>
+                    <button onclick="handleSearch('Ayuno')" class="px-6 py-2 rounded-full border border-zinc-200 hover:border-emerald-600 hover:text-emerald-700 transition-all text-sm">Ayuno Intermitente</button>
+                    <button onclick="handleSearch('Sueño')" class="px-6 py-2 rounded-full border border-zinc-200 hover:border-emerald-600 hover:text-emerald-700 transition-all text-sm">Higiene del Sueño</button>
+                    <button onclick="handleSearch('NMN')" class="px-6 py-2 rounded-full border border-zinc-200 hover:border-emerald-600 hover:text-emerald-700 transition-all text-sm">NMN</button>
+                    <button onclick="handleSearch('Frío')" class="px-6 py-2 rounded-full border border-zinc-200 hover:border-emerald-600 hover:text-emerald-700 transition-all text-sm">Crioterapia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[90] bg-white flex flex-col p-8 lg:hidden">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-xl font-serif font-bold tracking-tight">Biohacking<span class="text-emerald-600 italic">Longevo</span></span>
+            <button onclick="toggleMobileMenu(false)" class="p-2">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <nav class="flex flex-col gap-8">
+            <a href="index.html" class="text-4xl font-serif hover:text-emerald-600 transition-colors">Inicio</a>
+            <a href="nutricion.html" class="text-4xl font-serif hover:text-emerald-600 transition-colors">Nutrición</a>
+            <a href="sueno.html" class="text-4xl font-serif hover:text-emerald-600 transition-colors">Sueño</a>
+            <a href="tecnologia.html" class="text-4xl font-serif hover:text-emerald-600 transition-colors">Tecnología</a>
+            <a href="suplementos.html" class="text-4xl font-serif hover:text-emerald-600 transition-colors">Suplementos</a>
+            <a href="biohacking-mental.html" class="text-4xl font-serif hover:text-emerald-600 transition-colors">Cerebro</a>
+            <a href="recursos.html" class="text-4xl font-serif hover:text-emerald-600 transition-colors">Recursos</a>
+        </nav>
+
+        <div class="mt-auto pt-12 border-t border-zinc-100">
+            <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4">Síguenos</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-zinc-600 hover:text-emerald-600"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                <a href="#" class="text-zinc-600 hover:text-emerald-600"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                <a href="#" class="text-zinc-600 hover:text-emerald-600"><i data-lucide="youtube" class="w-6 h-6"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-8">
+                    <a href="index.html" class="text-2xl font-serif font-bold tracking-tight group">
+                        Biohacking<span class="text-emerald-600 italic group-hover:text-emerald-700 transition-colors">Longevo</span>
+                    </a>
+                    
+                    <nav class="hidden lg:flex items-center gap-6">
+                        <a href="nutricion.html" class="nav-btn text-sm font-semibold text-zinc-600 hover:text-emerald-600 uppercase tracking-wider">Nutrición</a>
+                        <a href="sueno.html" class="nav-btn text-sm font-semibold text-zinc-600 hover:text-emerald-600 uppercase tracking-wider">Sueño</a>
+                        <a href="tecnologia.html" class="nav-btn text-sm font-semibold text-zinc-600 hover:text-emerald-600 uppercase tracking-wider">Tecnología</a>
+                        <a href="suplementos.html" class="nav-btn text-sm font-semibold text-zinc-600 hover:text-emerald-600 uppercase tracking-wider">Suplementos</a>
+                        <a href="biohacking-mental.html" class="nav-btn text-sm font-semibold text-zinc-600 hover:text-emerald-600 uppercase tracking-wider">Cerebro</a>
+                        <a href="recursos.html" class="nav-btn text-sm font-semibold text-zinc-600 hover:text-emerald-600 uppercase tracking-wider">Recursos</a>
+                    </nav>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleSearch(true)" class="p-2 hover:bg-zinc-100 rounded-full transition-colors text-zinc-600" aria-label="Buscar">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu(true)" class="lg:hidden p-2 hover:bg-zinc-100 rounded-full transition-colors text-zinc-600">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                    <a href="protocolos.html" class="hidden md:flex px-6 py-2.5 bg-zinc-900 text-white rounded-full text-sm font-bold hover:bg-emerald-700 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/10">
+                        Protocolos VIP
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <div class="max-w-4xl mx-auto px-4 py-20">
+            <h1 class="text-4xl md:text-5xl font-serif mb-12">Términos y Condiciones</h1>
+            <div class="prose prose-zinc lg:prose-lg max-w-none text-zinc-600 space-y-8">
+                <p>Bienvenido a <strong>Biohacking Longevo</strong>. Al acceder a este sitio web, aceptas cumplir con los siguientes términos y condiciones de uso.</p>
+                
+                <section>
+                    <h2 class="text-2xl font-serif text-zinc-900 mb-4">1. Uso del Contenido</h2>
+                    <p>Todo el contenido publicado en este sitio es para fines informativos y educativos. No puedes reproducir, distribuir o modificar el contenido sin nuestro consentimiento expreso por escrito.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-serif text-zinc-900 mb-4">2. Propiedad Intelectual</h2>
+                    <p>El diseño, los logotipos, el texto y las imágenes de este sitio son propiedad de Biohacking Longevo o se utilizan bajo licencia. Todos los derechos están reservados.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-serif text-zinc-900 mb-4">3. Limitación de Responsabilidad</h2>
+                    <p>Biohacking Longevo no se hace responsable de las decisiones tomadas por el usuario basadas en la información proporcionada en este sitio. Consulta siempre con un profesional de la salud antes de realizar cambios en tu estilo de vida o suplementación.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-serif text-zinc-900 mb-4">4. Modificaciones</h2>
+                    <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el sitio web.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="index.html" class="text-3xl font-serif font-bold mb-6 block tracking-tight">
+                        Biohacking<span class="text-emerald-500 italic">Longevo</span>
+                    </a>
+                    <p class="text-zinc-400 max-w-sm leading-relaxed mb-8">
+                        La guía definitiva para optimizar tu biología, extender tu vitalidad y dominar el arte de la longevidad activa basada en evidencia científica.
+                    </p>
+                    <div class="flex gap-5">
+                        <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-emerald-600 transition-all hover:scale-110"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-emerald-600 transition-all hover:scale-110"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-emerald-600 transition-all hover:scale-110"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-emerald-500 mb-6">Explorar</h4>
+                    <ul class="space-y-4 text-sm text-zinc-400">
+                        <li><a href="nutricion.html" class="hover:text-white transition-colors flex items-center gap-2">Nutrición Celular</a></li>
+                        <li><a href="sueno.html" class="hover:text-white transition-colors flex items-center gap-2">Higiene del Sueño</a></li>
+                        <li><a href="tecnologia.html" class="hover:text-white transition-colors flex items-center gap-2">Tecnología Wearable</a></li>
+                        <li><a href="suplementos.html" class="hover:text-white transition-colors flex items-center gap-2">Suplementación NAD+</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-emerald-500 mb-6">Legal</h4>
+                    <ul class="space-y-4 text-sm text-zinc-400">
+                        <li><button onclick="togglePrivacyModal(true)" class="hover:text-white transition-colors">Privacidad</button></li>
+                        <li><a href="cookies.html" class="hover:text-white transition-colors">Cookies</a></li>
+                        <li><a href="terminos.html" class="hover:text-white transition-colors">Términos</a></li>
+                        <li><a href="descargo.html" class="hover:text-white transition-colors">Descargo Médico</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-zinc-800 text-center text-xs text-zinc-500">
+                <p>© 2026 Biohacking Longevo. Todos los derechos reservados. Optimización biológica para humanos conscientes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-[110] bg-zinc-900/90 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-[2rem] max-h-[80vh] overflow-hidden flex flex-col shadow-2xl">
+            <div class="p-8 border-b border-zinc-100 flex justify-between items-center bg-zinc-50">
+                <h3 class="text-2xl font-serif">Política de Privacidad</h3>
+                <button onclick="togglePrivacyModal(false)" class="p-2 hover:bg-zinc-200 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-8 overflow-y-auto text-zinc-600 text-sm leading-relaxed space-y-6">
+                <p>En <strong>Biohacking Longevo</strong>, valoramos tu privacidad tanto como tu salud mitocondrial. Esta política detalla cómo manejamos tus datos.</p>
+                <h4 class="font-bold text-zinc-900 uppercase tracking-widest text-xs">1. Recopilación de Datos</h4>
+                <p>Solo recopilamos tu correo electrónico cuando te suscribes voluntariamente a nuestros protocolos. No vendemos ni compartimos tu información con terceros.</p>
+                <h4 class="font-bold text-zinc-900 uppercase tracking-widest text-xs">2. Uso de la Información</h4>
+                <p>Tu email se utiliza exclusivamente para enviarte contenido educativo sobre biohacking, longevidad y actualizaciones del sitio.</p>
+                <h4 class="font-bold text-zinc-900 uppercase tracking-widest text-xs">3. Cookies y Publicidad</h4>
+                <p>Utilizamos Google AdSense para mostrar anuncios. Google puede utilizar cookies para mostrar anuncios basados en tus visitas anteriores a este y otros sitios web.</p>
+                <h4 class="font-bold text-zinc-900 uppercase tracking-widest text-xs">4. Tus Derechos</h4>
+                <p>Puedes darte de baja de nuestra lista de correo en cualquier momento haciendo clic en el enlace de "cancelar suscripción" en cualquier email que recibas.</p>
+            </div>
+            <div class="p-8 border-t border-zinc-100 bg-zinc-50 text-center">
+                <button onclick="togglePrivacyModal(false)" class="px-8 py-3 bg-zinc-900 text-white rounded-full font-bold hover:bg-emerald-600 transition-all">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Search Overlay Logic
+        function toggleSearch(isOpen) {
+            const overlay = document.getElementById('search-overlay');
+            overlay.classList.toggle('active', isOpen);
+            if (isOpen) {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function handleSearch(query) {
+            // Redirect to index.html with search query
+            window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+        }
+
+        // Mobile Menu Logic
+        function toggleMobileMenu(isOpen) {
+            document.getElementById('mobile-menu').classList.toggle('active', isOpen);
+        }
+
+        // Privacy Modal Logic
+        function togglePrivacyModal(isOpen) {
+            const modal = document.getElementById('privacy-modal');
+            if (isOpen) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
