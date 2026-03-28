@@ -9,38 +9,68 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9784250391412162" crossorigin="anonymous"></script>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="image.png">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
         :root {
-            --font-sans: 'Inter', sans-serif;
-            --font-serif: 'Playfair Display', serif;
+            --emerald-600: #059669;
+            --emerald-700: #047857;
         }
-
         body {
-            font-family: var(--font-sans);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-
         .font-serif {
-            font-family: var(--font-serif);
+            font-family: 'Playfair Display', serif;
         }
-
+        #search-overlay {
+            display: none;
+        }
+        #search-overlay.active {
+            display: flex;
+        }
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.active {
+            display: flex;
+        }
+        .nav-btn, .nav-mobile-btn {
+            transition: all 0.4s ease-out;
+            outline: 2px solid transparent;
+            outline-offset: 0px;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        }
+        .nav-btn:hover, .nav-mobile-btn:hover {
+            background-color: rgba(5, 150, 105, 0.1);
+            color: var(--emerald-700);
+            outline: 2px solid rgba(5, 150, 105, 0.3);
+            outline-offset: 4px;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .animate-fade-in {
             animation: fadeIn 0.5s ease-out forwards;
+        }
+        .prose h1, .prose h2, .prose h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .prose p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
         }
     </style>
 </head>
@@ -82,7 +112,7 @@
     <div id="mobile-menu" class="fixed inset-0 z-[90] bg-white md:hidden flex-col">
         <div class="flex flex-col h-full p-8">
             <div class="flex justify-between items-center mb-12">
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
                     <i data-lucide="dna" class="w-6 h-6 text-emerald-600"></i>
                     <span class="text-xl font-serif font-bold tracking-tighter">
                         LONGEVIDAD<span class="text-emerald-600">ACTIVA</span>
@@ -92,21 +122,21 @@
                     <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
             </div>
-            <nav class="flex flex-col gap-8">
-                <a href="index.html" class="nav-mobile-btn text-3xl font-serif text-left transition-colors">Inicio</a>
-                <a href="biohacking-mental.html" class="nav-mobile-btn text-3xl font-serif text-left transition-colors">Biohacking Mental</a>
-                <a href="recursos.html" class="nav-mobile-btn text-3xl font-serif text-left transition-colors">Recursos</a>
-                <a href="nutricion.html" class="nav-mobile-btn text-3xl font-serif text-left transition-colors">Nutrición</a>
-                <a href="sueno.html" class="nav-mobile-btn text-3xl font-serif text-left transition-colors">Sueño</a>
-                <a href="tecnologia.html" class="nav-mobile-btn text-3xl font-serif text-left transition-colors">Tecnología</a>
-                <a href="suplementos.html" class="nav-mobile-btn text-3xl font-serif text-left transition-colors">Suplementos</a>
+            <nav class="flex flex-col gap-4">
+                <button onclick="navigateTo('home')" class="nav-mobile-btn text-2xl font-serif text-left">Inicio</button>
+                <button onclick="navigateTo('biohacking-mental')" class="nav-mobile-btn text-2xl font-serif text-left">Biohacking Mental</button>
+                <button onclick="navigateTo('recursos')" class="nav-mobile-btn text-2xl font-serif text-left">Recursos</button>
+                <button onclick="navigateTo('nutricion')" class="nav-mobile-btn text-2xl font-serif text-left">Nutrición</button>
+                <button onclick="navigateTo('sueno')" class="nav-mobile-btn text-2xl font-serif text-left">Sueño</button>
+                <button onclick="navigateTo('tecnologia')" class="nav-mobile-btn text-2xl font-serif text-left">Tecnología</button>
+                <button onclick="navigateTo('suplementos')" class="nav-mobile-btn text-2xl font-serif text-left">Suplementos</button>
             </nav>
             <div class="mt-auto pt-12 border-t border-zinc-100">
                 <p class="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-6">Síguenos</p>
                 <div class="flex gap-6 text-zinc-600">
-                    <i data-lucide="instagram" class="w-6 h-6"></i>
-                    <i data-lucide="twitter" class="w-6 h-6"></i>
-                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                    <a href="https://instagram.com/longevidadactiva" target="_blank" rel="noopener"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    <a href="https://twitter.com/longevidadact" target="_blank" rel="noopener"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    <a href="https://facebook.com/longevidadactiva" target="_blank" rel="noopener"><i data-lucide="facebook" class="w-6 h-6"></i></a>
                 </div>
             </div>
         </div>
@@ -116,7 +146,7 @@
     <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
                     <div class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white">
                         <i data-lucide="dna" class="w-6 h-6"></i>
                     </div>
@@ -125,13 +155,13 @@
                     </span>
                 </div>
                 
-                <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-600">
-                    <a href="index.html" class="nav-btn transition-colors">Inicio</a>
-                    <a href="biohacking-mental.html" class="nav-btn transition-colors">Biohacking Mental</a>
-                    <a href="recursos.html" class="nav-btn transition-colors">Recursos</a>
-                    <a href="nutricion.html" class="nav-btn transition-colors">Nutrición</a>
-                    <a href="sueno.html" class="nav-btn transition-colors">Sueño</a>
-                    <a href="tecnologia.html" class="nav-btn transition-colors">Tecnología</a>
+                <nav class="hidden md:flex space-x-4 text-sm font-medium text-zinc-600">
+                    <button onclick="navigateTo('home')" class="nav-btn">Inicio</button>
+                    <button onclick="navigateTo('biohacking-mental')" class="nav-btn">Biohacking Mental</button>
+                    <button onclick="navigateTo('recursos')" class="nav-btn">Recursos</button>
+                    <button onclick="navigateTo('nutricion')" class="nav-btn">Nutrición</button>
+                    <button onclick="navigateTo('sueno')" class="nav-btn">Sueño</button>
+                    <button onclick="navigateTo('tecnologia')" class="nav-btn">Tecnología</button>
                 </nav>
 
                 <div class="flex items-center gap-4">
@@ -141,9 +171,9 @@
                     <button onclick="toggleMobileMenu(true)" class="md:hidden p-2 hover:bg-zinc-100 rounded-full transition-colors text-zinc-600">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
-                    <a href="protocolos.html" class="hidden md:flex px-6 py-2.5 bg-zinc-900 text-white rounded-full text-sm font-bold hover:bg-emerald-700 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/10">
+                    <button onclick="navigateTo('protocolos')" class="hidden md:flex px-6 py-2.5 bg-zinc-900 text-white rounded-full text-sm font-bold hover:bg-emerald-700 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/10">
                         Protocolos VIP
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -151,7 +181,7 @@
 
     <main class="flex-grow">
         <div class="max-w-4xl mx-auto px-4 py-16">
-            <button onclick="window.location.href='index.html'" class="mb-8 flex items-center text-emerald-600 font-semibold hover:gap-2 transition-all">
+            <button onclick="navigateTo('home')" class="mb-8 flex items-center text-emerald-600 font-semibold hover:gap-2 transition-all">
                 <i data-lucide="arrow-left" class="mr-2 w-4 h-4"></i> Volver al Inicio
             </button>
             <article class="prose prose-zinc lg:prose-xl max-w-none text-zinc-700 leading-relaxed">
@@ -161,7 +191,7 @@
                 <p class="text-xl font-medium text-zinc-900">El envejecimiento ya no se considera un proceso ineludible, sino una patología tratable. La convergencia de la biotecnología, la genómica y el biohacking avanzado nos ha llevado al umbral de la longevidad extrema, donde el objetivo no es solo extender la vida útil, sino revertir la edad biológica a nivel celular. A continuación, exploramos los diez pilares científicos y tecnológicos que están redefiniendo los límites de la existencia humana.</p>
 
                 <h2 class="text-3xl font-serif text-zinc-900 mt-12 mb-4">1. Epigenética y Reprogramación Celular: Reescribiendo el Código de la Juventud</h2>
-                <p>La epigenética es el sistema operativo de nuestro genoma. A medida que envejecemos, el "ruido" epigenético se acumula, provocando que las células pierdan su identidad y función. La reprogramación celular, inspirada en los Factores de Yamanaka (Oct4, Sox2, Klf4, c-Myc), busca borrar este ruido y devolver a las células adultas a un estado pluripotente inducido. En el contexto del biohacking, la modulación epigenética se logra a través de intervenciones precisas como la restricción calórica, el ejercicio de alta intensidad y el uso de donantes de metilo (como la trimetilglicina y el folato). Estas intervenciones ayudan a mantener los patrones de metilación del ADN asociados con la juventud, silenciando genes proinflamatorios y activando aquellos responsables de la reparación y el mantenimiento celular. La medición de la edad biológica mediante relojes epigenéticos, como el reloj de Horvath, permite a los biohackers cuantificar el impacto de sus protocolos en tiempo real, ajustando sus estrategias para maximizar la reversión del envejecimiento. La investigación actual se centra en la reprogramación parcial in vivo, un enfoque que rejuvenece los tejidos sin desdiferenciar completamente las células, evitando así el riesgo de teratomas y abriendo la puerta a terapias sistémicas de rejuvenecimiento humano. Además, la investigación en epigenética ha revealed que factores ambientales como la exposición a toxinas, el estrés crónico y la calidad del sueño pueden alterar drásticamente nuestro epigenoma. La metilación aberrante del ADN no solo acelera el envejecimiento, sino que también predispone al desarrollo de enfermedades crónicas como el cáncer y las enfermedades cardiovasculares. Por lo tanto, el biohacking epigenético no se limita a intervenciones moleculares, sino que abarca un enfoque holístico que incluye la optimización del entorno y el estilo de vida. El uso de adaptógenos, la meditación profunda y la terapia de exposición a la naturaleza (baños de bosque) están siendo estudiados por su capacidad para inducir cambios epigenéticos positivos, demostrando que nuestra biología es maleable y responde activamente a nuestras elecciones diarias.</p>
+                <p>La epigenética es el sistema operativo de nuestro genoma. A medida que envejecemos, el "ruido" epigenético se acumula, provocando que las células pierdan su identidad y función. La reprogramación celular, inspirada en los Factores de Yamanaka (Oct4, Sox2, Klf4, c-Myc), busca borrar este ruido y devolver a las células adultas a un estado pluripotente inducido. En el contexto del biohacking, la modulación epigenética se logra a través de intervenciones precisas como la restricción calórica, el ejercicio de alta intensidad y el uso de donantes de metilo (como la trimetilglicina y el folato). Estas intervenciones ayudan a mantener los patrones de metilación del ADN asociados con la juventud, silenciando genes proinflamatorios y activando aquellos responsables de la reparación y el mantenimiento celular. La medición de la edad biológica mediante relojes epigenéticos, como el reloj de Horvath, permite a los biohackers cuantificar el impacto de sus protocolos en tiempo real, ajustando sus estrategias para maximizar la reversión del envejecimiento. La investigación actual se centra en la reprogramación parcial in vivo, un enfoque que rejuvenece los tejidos sin desdiferenciar completamente las células, evitando así el riesgo de teratomas y abriendo la puerta a terapias sistémicas de rejuvenecimiento humano. Además, la investigación en epigenética ha revealed que factores ambientales como la exposición a toxinas, el estrés crónico y la calidad del sueño pueden alterar drásticos nuestro epigenoma. La metilación aberrante del ADN no solo acelera el envejecimiento, sino que también predispone al desarrollo de enfermedades crónicas como el cáncer y las enfermedades cardiovasculares. Por lo tanto, el biohacking epigenético no se limita a intervenciones moleculares, sino que abarca un enfoque holístico que incluye la optimización del entorno y el estilo de vida. El uso de adaptógenos, la meditación profunda y la terapia de exposición a la naturaleza (baños de bosque) están siendo estudiados por su capacidad para inducir cambios epigenéticos positivos, demostrando que nuestra biología es maleable y responde activamente a nuestras elecciones diarias.</p>
 
                 <h3 class="text-2xl font-serif text-zinc-900 mt-8 mb-4">2. Senolíticos y la Erradicación de las Células Zombi</h3>
                 <p>La senescencia celular es uno de los principales motores del envejecimiento. Las células senescentes, a menudo denominadas "células zombi", han dejado de dividirse pero se resisten a la apoptosis (muerte celular programada). En su lugar, secretan un cóctel tóxico de citoquinas, quimiocinas y proteasas conocido como Fenotipo Secretor Asociado a la Senescencia (SASP). Este SASP induce inflamación crónica de bajo grado (inflammaging) y propaga la senescencia a las células sanas vecinas, acelerando el deterioro tisular. Las terapias senolíticas buscan identificar y destruir selectivamente estas células disfuncionales. Compuestos naturales como la quercetina (presente en cebollas y manzanas) y la fisetina (abundante en las fresas) han demostrado una potente actividad senolítica en estudios preclínicos. Además, fármacos como el dasatinib, originalmente desarrollado para la leucemia, se utilizan en protocolos experimentales de biohacking para "limpiar" el organismo de células senescentes. La eliminación periódica de estas células no solo reduce la inflamación sistémica, sino que también rejuvenece el microambiente tisular, permitiendo que las células madre residentes proliferen y reparen los tejidos dañados, restaurando la función de órganos vitales y extendiendo significativamente el healthspan. La complejidad de la senescencia celular radica en que no todas las células senescentes son perjudiciales; algunas juegan un papel crucial en la cicatrización de heridas y la supresión de tumores. Por ello, el desafío actual del biohacking avanzado es desarrollar terapias senolíticas de precisión que eliminen selectivamente las células senescentes patológicas sin afectar a aquellas que cumplen funciones fisiológicas esenciales. La nanotecnología y el uso de anticuerpos monoclonales conjugados con fármacos senolíticos prometen revolucionar este campo, permitiendo una limpieza celular dirigida y minimizando los efectos secundarios sistémicos.</p>
@@ -198,7 +228,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 text-white mb-6 cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="flex items-center gap-2 text-white mb-6 cursor-pointer" onclick="navigateTo('home')">
                         <i data-lucide="dna" class="w-6 h-6 text-emerald-500"></i>
                         <span class="text-xl font-serif font-bold tracking-tighter">
                             LONGEVIDAD<span class="text-emerald-500">ACTIVA</span>
@@ -212,20 +242,19 @@
                 <div>
                     <h4 class="text-white font-semibold mb-6 uppercase tracking-widest text-xs">Explorar</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="index.html" class="footer-link text-zinc-400">Inicio</a></li>
-                        <li><a href="recursos.html" class="footer-link text-zinc-400">Recursos</a></li>
-                        <li><a href="protocolos.html" class="footer-link text-zinc-400">Protocolos</a></li>
-                        <li><a href="suplementos.html" class="footer-link text-zinc-400">Suplementación</a></li>
+                        <li><button onclick="navigateTo('home')" class="footer-link text-zinc-400">Inicio</button></li>
+                        <li><button onclick="navigateTo('recursos')" class="footer-link text-zinc-400">Recursos</button></li>
+                        <li><button onclick="navigateTo('protocolos')" class="footer-link text-zinc-400">Protocolos</button></li>
+                        <li><button onclick="navigateTo('suplementos')" class="footer-link text-zinc-400">Suplementación</button></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-white font-semibold mb-6 uppercase tracking-widest text-xs">Legal</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><button onclick="togglePrivacyModal(true)" class="footer-link text-zinc-400">Privacidad</button></li>
-                        <li><a href="cookies.html" class="footer-link text-zinc-400">Cookies</a></li>
-                        <li><a href="terminos.html" class="footer-link text-zinc-400">Términos</a></li>
-                        <li><a href="descargo.html" class="footer-link text-zinc-400">Descargo Médico</a></li>
+                        <li><button onclick="navigateTo('terminos')" class="footer-link text-zinc-400">Términos</button></li>
+                        <li><button onclick="navigateTo('cookies')" class="footer-link text-zinc-400">Cookies</button></li>
+                        <li><button onclick="navigateTo('descargo')" class="footer-link text-zinc-400">Descargo Médico</button></li>
                     </ul>
                 </div>
             </div>
@@ -235,69 +264,83 @@
                     © <span id="current-year"></span> Longevidad Activa. Todos los derechos reservados.
                 </p>
                 <div class="flex gap-4">
-                    <a href="#" class="footer-social text-zinc-400"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                    <a href="#" class="footer-social text-zinc-400"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                    <a href="#" class="footer-social text-zinc-400"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="https://instagram.com/longevidadactiva" target="_blank" rel="noopener" class="footer-social text-zinc-400"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="https://twitter.com/longevidadact" target="_blank" rel="noopener" class="footer-social text-zinc-400"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    <a href="https://facebook.com/longevidadactiva" target="_blank" rel="noopener" class="footer-social text-zinc-400"><i data-lucide="facebook" class="w-5 h-5"></i></a>
                 </div>
+            </div>
+            
+            <div class="mt-12 p-6 bg-zinc-800/50 rounded-2xl text-[10px] leading-relaxed text-zinc-500 text-center">
+                <p>
+                    DESCARGO DE RESPONSABILIDAD: El contenido de este sitio web es solo para fines informativos y educativos. No constituye consejo médico, diagnóstico o tratamiento. Siempre consulte con un profesional de la salud calificado antes de realizar cambios en su dieta, rutina de ejercicios o régimen de suplementos.
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- Privacy Modal -->
-    <div id="privacy-modal" class="fixed inset-0 z-[110] bg-zinc-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div class="p-8 md:p-12">
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="text-3xl font-serif">Política de Privacidad</h2>
-                    <button onclick="togglePrivacyModal(false)" class="p-2 hover:bg-zinc-100 rounded-full transition-colors">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                <div class="prose prose-zinc max-w-none">
-                    <p class="text-zinc-600 leading-relaxed mb-6">
-                        En <strong>Longevidad Activa</strong>, valoramos profundamente la confianza que deposita en nosotros al compartir su interés por la salud y el biohacking. Esta Política de Privacidad describe cómo manejamos su información.
-                    </p>
-                    <h3 class="text-xl font-serif mb-4">Publicidad y Google AdSense</h3>
-                    <p class="text-zinc-600 leading-relaxed mb-6">
-                        Utilizamos <strong>Google AdSense</strong> para mostrar anuncios publicitarios que nos ayudan a mantener gratuita nuestra plataforma de investigación. Google utiliza cookies para mostrar anuncios basados en sus visitas previas a nuestro sitio web o a otros sitios en Internet.
-                    </p>
-                </div>
-                <div class="mt-12 pt-8 border-t border-zinc-100 text-center">
-                    <button onclick="togglePrivacyModal(false)" class="px-8 py-3 bg-zinc-900 text-white rounded-full font-bold hover:bg-emerald-600 transition-all">Entendido</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
+        // Search Overlay Logic
         function toggleSearch(isOpen) {
             const overlay = document.getElementById('search-overlay');
-            overlay.classList.toggle('active', isOpen);
-            if (isOpen) document.getElementById('search-input').focus();
+            if (isOpen) {
+                overlay.classList.add('active');
+                document.getElementById('search-input').focus();
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function handleSearch(query) {
+            if (!query) return;
             window.location.href = `index.html?search=${encodeURIComponent(query)}`;
         }
 
+        // Mobile Menu Logic
         function toggleMobileMenu(isOpen) {
-            document.getElementById('mobile-menu').classList.toggle('active', isOpen);
-        }
-
-        function togglePrivacyModal(isOpen) {
-            const modal = document.getElementById('privacy-modal');
+            const menu = document.getElementById('mobile-menu');
             if (isOpen) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
+                menu.classList.add('active');
                 document.body.style.overflow = 'hidden';
             } else {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
+                menu.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
+        }
+
+        // Navigation Logic
+        function navigateTo(sectionId) {
+            const pageMap = {
+                'nutricion': 'nutricion.html',
+                'sueno': 'sueno.html',
+                'tecnologia': 'tecnologia.html',
+                'suplementos': 'suplementos.html',
+                'biohacking-mental': 'biohacking-mental.html',
+                'recursos': 'recursos.html',
+                'cookies': 'cookies.html',
+                'terminos': 'terminos.html',
+                'descargo': 'descargo.html',
+                'autofagia-ayuno': 'autofagia-ayuno.html',
+                'nootropicos': 'nootropicos.html',
+                'deep-biohacking': 'deep-biohacking.html',
+                'protocolos': 'protocolos.html',
+                'sueno-profundo': 'sueno-profundo.html',
+                'longevidad-extrema': 'longevidad-extrema.html',
+                'home': 'index.html'
+            };
+            
+            if (pageMap[sectionId]) {
+                window.location.href = pageMap[sectionId];
+            }
+            
+            toggleMobileMenu(false);
         }
     </script>
 </body>
